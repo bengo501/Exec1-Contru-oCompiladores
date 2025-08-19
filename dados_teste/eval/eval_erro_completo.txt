@@ -1,0 +1,90 @@
+P1, P2, P3, TF
+1
+(P1 + P2) * 0.5
+P1
+
+# === TESTES DE ERRO PARA EVALLEXER ===
+
+# Caracteres especiais inválidos
+P1 @ P2 # erro: arroba
+(PS # ME) / 2 # erro: hashtag
+TF $ P1 # erro: cifrão
+P2 % P3 # erro: porcentagem
+ME ^ TF # erro: circunflexo
+P1 & P2 # erro: ampersand
+PS | ME # erro: pipe
+P1 \ P2 # erro: backslash
+TF ~ P1 # erro: til
+P2 ` P3 # erro: crase
+
+# Símbolos não permitidos
+P1 < P2 # erro: menor que
+PS > ME # erro: maior que
+TF = P1 # erro: igual
+P2 != P3 # erro: diferente
+ME <= TF # erro: menor igual
+P1 >= P2 # erro: maior igual
+PS == ME # erro: igualdade
+TF <> P1 # erro: diferente (pascal)
+
+# Caracteres de pontuação inválidos
+P1 ; P2 # erro: ponto e vírgula
+PS : ME # erro: dois pontos (fora de contexto)
+TF . P1 # erro: ponto
+P2 ? P3 # erro: interrogação
+ME ! TF # erro: exclamação
+P1 " P2 # erro: aspas duplas
+PS ' ME # erro: aspas simples
+
+# Caracteres acentuados
+Prova1 + Prova2 # erro: nome muito longo
+P1 + Ação # erro: caractere acentuado
+Prova + Exâme # erro: caracteres acentuados
+Ñota1 + Ñota2 # erro: caracteres especiais
+
+# Números inválidos
+P1 + 123.45.67 # erro: número com dois pontos
+P2 - .123 # erro: número começando com ponto
+P3 * 123. # erro: número terminando com ponto
+TF / 123abc # erro: número com letras
+P1 + 12e # erro: notação científica incompleta
+P2 - 12E+ # erro: notação científica incompleta
+
+# Operadores inválidos
+P1 ** P2 # erro: exponenciação
+PS // ME # erro: divisão inteira
+TF %% P1 # erro: módulo duplo
+P2 += P3 # erro: atribuição com soma
+ME -= TF # erro: atribuição com subtração
+P1 *= P2 # erro: atribuição com multiplicação
+PS /= ME # erro: atribuição com divisão
+
+# Parênteses não balanceados
+((P1 + P2) * TF # erro: parêntese não fechado
+(P1 + P2)) * TF # erro: parêntese extra
+P1 + )P2 * TF( # erro: parênteses invertidos
+
+# Caracteres Unicode e especiais
+P1 + P2 → TF # erro: seta Unicode
+PS ∑ ME # erro: símbolo matemático
+TF ∆ P1 # erro: delta
+P2 ∞ P3 # erro: infinito
+ME ≠ TF # erro: diferente Unicode
+
+# Caracteres de controle
+P1	+	P2 # tab literal (pode ser problemático)
+P1 + P2 # espaços não quebráveis
+PS + ME # caractere de controle
+
+# Tipos de substituição inválidos
+3 # erro: tipo de substituição inválido (deve ser 0, 1 ou 2)
+4 # erro: tipo de substituição inválido
+-1 # erro: tipo de substituição negativo
+10 # erro: tipo de substituição maior que 2
+
+# Nomes inválidos
+123P # erro: nome começando com número
+P# # erro: nome com caractere especial
+P- # erro: nome com hífen
+P. # erro: nome com ponto
+P@ # erro: nome com arroba

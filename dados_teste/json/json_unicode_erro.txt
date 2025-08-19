@@ -1,0 +1,36 @@
+{
+    "teste_unicode": "normal",
+    
+    // Caracteres Unicode que devem gerar erro
+    "erro_seta": →,
+    "erro_simbolo_matematico": ∑,
+    "erro_delta": ∆,
+    "erro_infinito": ∞,
+    "erro_diferente_unicode": ≠,
+    "erro_menor_igual": ≤,
+    "erro_maior_igual": ≥,
+    "erro_aproximadamente": ≈,
+    "erro_mais_menos": ±,
+    "erro_multiplicacao": ×,
+    "erro_divisao": ÷,
+    
+    // Emojis (se suportados)
+    "erro_emoji": 😀,
+    "erro_emoji2": 🚀,
+    
+    // Caracteres de outras linguagens
+    "erro_chines": 中文,
+    "erro_arabe": العربية,
+    "erro_russo": русский,
+    "erro_grego": ελληνικά,
+    
+    // Caracteres de controle
+    "erro_null": ,
+    "erro_backspace": ,
+    "erro_form_feed": ,
+    "erro_vertical_tab": ,
+    
+    // Caracteres especiais de formatação
+    "erro_zero_width": ​,
+    "erro_non_breaking_space":  
+}

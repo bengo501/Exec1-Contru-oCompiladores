@@ -1,0 +1,64 @@
+{
+    "string_valida": "teste normal",
+    "numero_valido": 123,
+    
+    // Erro: comentários não são permitidos em JSON
+    "erro_comentario": "valor",
+    
+    /* Erro: comentários de bloco também não são permitidos */
+    "erro_comentario_bloco": true,
+    
+    // Caracteres especiais inválidos
+    "erro_arroba": @valor@,
+    "erro_hashtag": #hashtag#,
+    "erro_porcentagem": %porcentagem%,
+    "erro_ampersand": &ampersand&,
+    "erro_asterisco": *asterisco*,
+    "erro_parenteses_sem_aspas": (parenteses),
+    "erro_underscore": _underscore_,
+    "erro_pipe": |pipe|,
+    "erro_backslash": \backslash\,
+    "erro_interrogacao": ?interrogacao?,
+    "erro_exclamacao": !exclamacao!,
+    
+    // Símbolos matemáticos inválidos
+    "erro_menor": <menor>,
+    "erro_maior": >maior>,
+    "erro_igual": =igual=,
+    "erro_mais": +mais+,
+    "erro_menos_sem_numero": -menos-,
+    
+    // Caracteres acentuados (não são válidos sem escape)
+    "erro_acentos": çãõéêíúáàü,
+    "erro_cedilha": ç,
+    "erro_til": ãõ,
+    
+    // Aspas não fechadas
+    "erro_aspas_nao_fechadas": "string sem fechamento
+    
+    // Vírgula extra
+    "erro_virgula_extra": "valor",,
+    
+    // Dois pontos duplos
+    "erro_dois_pontos":: "valor",
+    
+    // Caracteres de controle
+    "erro_tab":	tab_literal,
+    "erro_quebra": quebra
+    literal,
+    
+    // Números inválidos
+    "erro_numero_ponto": .123,
+    "erro_numero_duplo_ponto": 12..34,
+    "erro_numero_letra": 123abc,
+    
+    // Strings com escape inválido
+    "erro_escape": "string com \x escape inválido",
+    
+    // Chaves e colchetes não balanceados
+    "erro_chave_nao_fechada": {
+        "valor": "sem fechamento"
+    
+    "erro_colchete": ["array", "sem", "fechamento"
+    
+}

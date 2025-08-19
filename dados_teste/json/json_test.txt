@@ -1,0 +1,18 @@
+{
+    "string_simples": "teste",
+    "numero_inteiro": 42,
+    "numero_decimal": 3.14159,
+    "booleano_true": true,
+    "booleano_false": false,
+    "valor_null": null,
+    "array_simples": [1, 2, 3],
+    "array_misto": ["texto", 123, true],
+    "objeto_aninhado": {
+        "propriedade": "valor",
+        "numero": 999
+    },
+    "array_com_objetos": [
+        {"id": 1, "nome": "item1"},
+        {"id": 2, "nome": "item2"}
+    ]
+}

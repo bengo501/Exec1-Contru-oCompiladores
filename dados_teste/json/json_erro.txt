@@ -1,0 +1,8 @@
+{
+    "string_valida": "teste",
+    "numero_valido": 42,
+    "erro_caractere": @#$%^&*(),
+    "erro_simbolo": < > = +,
+    "erro_acento": çãõéê,
+    "erro_especial": !@#$%^&*()_+-=[]{}|;':",./<>?
+}

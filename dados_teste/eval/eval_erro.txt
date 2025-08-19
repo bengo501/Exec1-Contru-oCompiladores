@@ -1,0 +1,19 @@
+P1 + P2 * 0.5
+(PS - ME) / 2
+TF, P1, P2
+123 + 45.67 - 0
+Nome1 + 1
+
+# Caracteres invalidos
+P1 @ P2
+(PS # ME) / 2
+TF, P1, P2$
+123 + 45.67 - 0%
+Nome1 + 1&
+
+# Simbolos especiais
+P1 < P2
+(PS > ME) / 2
+TF, P1, P2!
+123 + 45.67 - 0?
+Nome1 + 1@

@@ -1,0 +1,74 @@
+# TESTE ESPECÍFICO: Números inválidos no EvalLexer
+
+# Números válidos (para comparação)
+P1 + 123
+P2 * 45.67
+TF / 0.5
+
+# === NÚMEROS INVÁLIDOS ===
+
+# Múltiplos pontos decimais
+P1 + 12.34.56
+P2 - 1.2.3.4
+TF * 0.1.2
+
+# Números começando com ponto
+P1 + .123
+P2 - .456
+TF / .789
+
+# Números terminando com ponto
+P1 + 123.
+P2 - 456.
+TF * 789.
+
+# Números com letras
+P1 + 123abc
+P2 - 456def
+TF * 789xyz
+P1 / 12e
+P2 + 34E
+TF - 56e+
+
+# Notação científica incompleta
+P1 + 12e
+P2 - 34E
+TF * 56e+
+P1 / 78E-
+P2 + 90e+abc
+TF - 12E-xyz
+
+# Múltiplos sinais
+P1 + --123
+P2 - ++456
+TF * +-789
+P1 / -+123
+
+# Números hexadecimais (não suportados)
+P1 + 0x123
+P2 - 0xFF
+TF * 0xABC
+
+# Números octais (não suportados)
+P1 + 0123
+P2 - 0456
+TF * 0789
+
+# Números binários (não suportados)
+P1 + 0b101
+P2 - 0b110
+TF * 0b111
+
+# Separadores de milhares (não suportados)
+P1 + 1,000
+P2 - 1.000.000
+TF * 1_000_000
+
+# Números muito grandes
+P1 + 999999999999999999999999999999
+P2 - 1.23456789012345678901234567890
+
+# Caracteres numéricos de outras culturas
+P1 + ١٢٣  # números árabes
+P2 - ১২৩  # números bengali
+TF * 一二三  # números chinês
