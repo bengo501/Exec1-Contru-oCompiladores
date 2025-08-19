@@ -1,7 +1,7 @@
 %%
 
 %public
-%class JsonLexerCorrigido
+%class JsonLexer
 %unicode
 %line
 %column
@@ -39,7 +39,7 @@ public static void main(String[] args) throws Exception {
     } else {
         reader = new java.io.InputStreamReader(System.in);
     }
-    JsonLexerCorrigido lexer = new JsonLexerCorrigido(reader);
+    JsonLexer lexer = new JsonLexer(reader);
     int token;
     // CORREÇÃO: comparar com YYEOF (-1) em vez de EOF (12)
     while ((token = lexer.yylex()) != YYEOF) {

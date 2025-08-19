@@ -2,29 +2,29 @@
 
 ## **Status Atual**
 - JFlex gerou os arquivos Java com sucesso (0 erros, 0 warnings)
-- JsonLexerExercicio.java criado
-- EvalLexerExercicio.java criado
+- JsonLexer.java criado
+- EvalLexer.java criado
 
 ## 🔧 **Passo 1: Compilar os Analisadores**
 
 ### **Opção A: Se Java estiver no PATH**
 ```bash
-javac JsonLexerExercicio.java
-javac EvalLexerExercicio.java
+javac JsonLexer.java
+javac EvalLexer.java
 ```
 
 ### **Opção B: Se Java não estiver no PATH**
 Encontre o caminho do Java e use:
 ```bash
-"C:\Program Files\Java\jdk-version\bin\javac" JsonLexerExercicio.java
-"C:\Program Files\Java\jdk-version\bin\javac" EvalLexerExercicio.java
+"C:\Program Files\Java\jdk-version\bin\javac" JsonLexer.java
+"C:\Program Files\Java\jdk-version\bin\javac" EvalLexer.java
 ```
 
 ## 🧪 **Passo 2: Testar o Analisador JSON**
 
 ### **Comando de Teste:**
 ```bash
-java JsonLexerExercicio teste_json.txt
+java JsonLexer teste_json.txt
 ```
 
 ### **Resultado Esperado:**
@@ -65,7 +65,7 @@ java JsonLexerExercicio teste_json.txt
 
 ### **Comando de Teste:**
 ```bash
-java EvalLexerExercicio teste_avaliacao.txt
+java EvalLexer teste_avaliacao.txt
 ```
 
 ### **Resultado Esperado:**
@@ -185,14 +185,14 @@ Crie um arquivo `teste_erro.txt` com caracteres inválidos para verificar se o a
 
 ```bash
 # Compilar
-javac JsonLexerExercicio.java
-javac EvalLexerExercicio.java
+javac JsonLexer.java
+javac EvalLexer.java
 
 # Testar JSON
-java JsonLexerExercicio teste_json.txt
+java JsonLexer teste_json.txt
 
 # Testar Sistema de Avaliação
-java EvalLexerExercicio teste_avaliacao.txt
+java EvalLexer teste_avaliacao.txt
 ```
 
 Execute estes comandos e compare os resultados com os esperados para provar que os analisadores estão corretos!

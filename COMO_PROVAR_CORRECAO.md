@@ -2,21 +2,21 @@
 
 ## ✅ **Status Atual Confirmado**
 - ✅ JFlex gerou os arquivos Java com sucesso (0 erros, 0 warnings)
-- ✅ JsonLexerExercicio.java criado
-- ✅ EvalLexerExercicio.java criado
+- ✅ JsonLexer.java criado
+- ✅ EvalLexer.java criado
 - ✅ Arquivos de teste criados
 
 ## 🎯 **Passos para Provar a Correção**
 
 ### **1. Compilar os Analisadores**
 ```bash
-javac JsonLexerExercicio.java
-javac EvalLexerExercicio.java
+javac JsonLexer.java
+javac EvalLexer.java
 ```
 
 ### **2. Testar o Analisador JSON**
 ```bash
-java JsonLexerExercicio teste_json.txt
+java JsonLexer teste_json.txt
 ```
 
 **Resultado Esperado:**
@@ -55,7 +55,7 @@ java JsonLexerExercicio teste_json.txt
 
 ### **3. Testar o Analisador de Sistema de Avaliação**
 ```bash
-java EvalLexerExercicio teste_avaliacao.txt
+java EvalLexer teste_avaliacao.txt
 ```
 
 **Resultado Esperado:**
@@ -143,7 +143,7 @@ java EvalLexerExercicio teste_avaliacao.txt
 
 ### **Teste com Entrada Inválida:**
 ```bash
-java JsonLexerExercicio teste_erro.txt
+java JsonLexer teste_erro.txt
 ```
 Deve mostrar mensagens de erro para caracteres inválidos.
 
@@ -179,17 +179,17 @@ Deve mostrar mensagens de erro para caracteres inválidos.
 
 ```bash
 # Compilar
-javac JsonLexerExercicio.java
-javac EvalLexerExercicio.java
+javac JsonLexer.java
+javac EvalLexer.java
 
 # Testar JSON
-java JsonLexerExercicio teste_json.txt
+java JsonLexer teste_json.txt
 
 # Testar Sistema de Avaliação
-java EvalLexerExercicio teste_avaliacao.txt
+java EvalLexer teste_avaliacao.txt
 
 # Testar com entrada inválida
-java JsonLexerExercicio teste_erro.txt
+java JsonLexer teste_erro.txt
 ```
 
 **Execute estes comandos e compare os resultados com os esperados para provar que os analisadores estão corretos!**

@@ -1,7 +1,7 @@
 # Exercícios de Análise Léxica - JFlex
 ## Exercício 1: Analisador Léxico para JSON
 ### Arquivos:
-- `JsonLexerExercicio.flex` - Especificação JFlex para JSON
+- `JsonLexer.flex` - Especificação JFlex para JSON
 - `teste_json.txt` - Arquivo de teste JSON
 
 ### Tokens reconhecidos:
@@ -20,14 +20,14 @@
 
 ### Como usar:
 ```bash
-jflex JsonLexerExercicio.flex
-javac JsonLexerExercicio.java
-java JsonLexerExercicio teste_json.txt
+jflex JsonLexer.flex
+javac JsonLexer.java
+java JsonLexer teste_json.txt
 ```
 
 ## Exercício 2: Analisador Léxico para Sistema de Avaliação
 ### Arquivos:
-- `EvalLexerExercicio.flex` - Especificação JFlex para sistema de avaliação
+- `EvalLexer.flex` - Especificação JFlex para sistema de avaliação
 - `teste_avaliacao.txt` - Arquivo de teste do sistema de avaliação
 ### Tokens reconhecidos:
 - `COMMA` (1) - Vírgula `,`
@@ -46,9 +46,9 @@ java JsonLexerExercicio teste_json.txt
 
 ### Como usar:
 ```bash
-jflex EvalLexerExercicio.flex
-javac EvalLexerExercicio.java
-java EvalLexerExercicio teste_avaliacao.txt
+jflex EvalLexer.flex
+javac EvalLexer.java
+java EvalLexer teste_avaliacao.txt
 ```
 
 ## Compilação e Teste Automático

@@ -1,7 +1,7 @@
 %%
 
 %public
-%class EvalLexerCorrigido
+%class EvalLexer
 %unicode
 %line
 %column
@@ -9,8 +9,8 @@
 
 %{
 /******************************************************
- * EvalLexerCorrigido - Analisador Léxico para       *
- * Sistema de Avaliação                               *
+ * EvalLexer - Analisador Léxico para Sistema de     *
+ * Avaliação                                          *
  *                                                    *
  * Para cada token reconhecido mostra:               *
  *   CÓDIGO	LEXEME	LINHA                           *
@@ -41,7 +41,7 @@ public static void main(String[] args) throws Exception {
     } else {
         reader = new java.io.InputStreamReader(System.in);
     }
-    EvalLexerCorrigido lexer = new EvalLexerCorrigido(reader);
+    EvalLexer lexer = new EvalLexer(reader);
     int token;
     // CORREÇÃO: comparar com YYEOF (-1) corretamente
     while ((token = lexer.yylex()) != YYEOF) {
