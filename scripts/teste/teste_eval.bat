@@ -19,7 +19,7 @@ echo ========================================
 echo Compilando EvalLexer...
 echo ========================================
 
-javac EvalLexer.java
+javac ..\..\analisadores\EvalLexer\EvalLexer.java
 if %errorlevel% equ 0 (
     echo ✓ EvalLexer compilado com sucesso
 ) else (
@@ -35,7 +35,7 @@ echo ========================================
 echo.
 echo Teste 1: Sistema de avaliacao basico
 echo ----------------------------------------
-java EvalLexer teste_avaliacao.txt
+java -cp ..\..\analisadores\EvalLexer EvalLexer ..\..\dados_teste\eval\teste_avaliacao.txt
 
 echo.
 echo Teste 2: Expressoes aritmeticas
