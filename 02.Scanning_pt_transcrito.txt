@@ -1,0 +1,463 @@
+===== Página 1 =====
+Compiladores
+Versão reduzida/adaptada (original em http://dotnet.jku.at/courses/CC/)12.Análise léxica
+2.1 Tarefas do analisador léxico
+2.2 Gramáticas regulares e autômatos finitos
+2.3 Implementação de um analisador léxico
+
+===== Página 2 =====
+2Tarefas de um analisador léxico
+1.Retorna símbolos terminais(tokens)
+if (x =3) =
+cadeia de caracteresscanner IF, LPAR, IDENT, EQ, NUMBER, RPAR, ..., EOF
+cadeia de tokens
+(deve terminar com EOF)
+Tokens têm estrutura sintática, p.e.
+ident = letter { letter | digit }.
+number = digit { digit }.
+if = "i" "f".
+eql = "=" "=".
+...
+Porque a análise léxica não é parte da sintática?2.Despreza símbolos sem significado
+•brancos
+•caracteres de tabulação
+•caracteres de final de linha (CR, LF)
+•comentários
+
+===== Página 3 =====
+3Porque a análise léxica não é parte da sintática?
+Tornaria a análise sintática mais complexa
+(p.e. dificuldade em distinguir entre nomes e palavras reservadas)
+Statement =ident "=" Expr ";"
+|"if" "(" Expr ")" ... .
+Seria necessário escrever da seguinte forma:
+Statement ="i"("f" "(" Expr ")" ...
+|notF {letter | digit} "=" Expr ";"
+)
+|notI {letter | digit} "=" Expr ";".
+O léxico deve eliminar caracteres brancos, tabs, finais de linha e comentários
+(estes símbolos podem ocorrer em qualquer lugar => iria tornar a gramática muito complexa)
+Statement ="if" {Blank} "(" {Blank} Expr {Blank} ")" {Blank} ... .
+Blank = " " | " \r" | "\n" | " \t" | Comment.
+Tokens  podem ser descritos com gramáticas regulares
+(mais simples e eficiente que gramáticas livres de contexto)
+
+===== Página 4 =====
+42.Análise léxica
+2.1 Tarefas do analisador léxico
+2.2 Gramáticas regulares e autômatos finitos
+2.3 Implementação de um analisador léxico
+
+===== Página 5 =====
+5Gramáticas regulares
+Definição
+Uma gramática é dita regular se pode ser descrita por produções da forma:
+A = a.
+A = b B.a, b 
+ TS
+A, B 
+ NTS
+Exemplo Gramática para nomes
+Ident =letter
+|letter Rest.
+Rest =letter
+|digit
+|letter Rest
+|digit Rest.p.e., derivação do nome xy3
+Ident 
+ letter Rest 
+ letter letter Rest 
+ letter letter digit
+
+===== Página 6 =====
+6Limitações das Gramáticas Regulares
+Gramáticas regulares não conseguem manipular estruturas aninhadas
+porque elas não conseguem manipular recursão central!
+Recursão central, no entanto, é importante para maioria das linguagens de programação.
+Class
+ "class" "{" ... Class ... "}"•expressões aninhadas
+•comandos aninhados
+•classes aninhadasExpr
+ ... "(" Expr ")" ...
+Statement
+ "do" Statement "while" "(" Expr ")"
+Para estes casos necessitamos de gramáticas livres de contexto.
+A maioria das estruturas léxicas são regulares
+nomes letter { letter | digit }
+números digit { digit }
+strings "\"" { noQuote } " \""
+pal. reservadas letter { letter }
+operadores ">" "="Exceção: comentários aninhados
+/* ..... /* ... */ ..... */
+O léxico deve tratar este tipo de caso
+de maneira especial
+
+===== Página 7 =====
+7Expressões Regulares (ER)
+Notação alternativa para gramáticas regulares
+Definição
+1. 
+ (a string vazia) é uma ER
+2. Um símbolo terminal é uma ER
+3. Se 
+ e 
+são ERs as seguintes expressões também são regulares:
+(
+| 
+)
+(
+)?
+ | 
+(
+)*
+ | 
+| 
+ | 
+ | ...
+(
+)+
+ | 
+ | 
+ | ...
+Exemplos
+"w" "h" "i" "l" "e" while
+letter ( letter | digit )* nomes
+digit+ números
+
+===== Página 8 =====
+8Autômatos finitos determinísticos (AFD)
+Podem ser usados para analisar linguagens regulares
+Exemplo
+0 1estado final
+digitletterletter
+estado inicial é sempre 
+o estado 0 por convençãoFunção de transição de estados 
+como uma tabela
+letter digit
+s0
+s1
+s1 error
+s1 s1"finito", porque 
+pode ser explicitamente
+escrita
+Definição
+Um autômato finito determinístico é uma 5 -tuple (S, I, 
+ , s0, F)
+•S conjunto de estados
+•I conjunto de símbolos de entrada
+•
+: S x I Sfunção de transição de estados
+•s0 estado inicial
+•F conjunto de estados finais
+Um AFD reconhece uma sentença
+•se está em um dos seus estados finais
+•e  se a entrada foi toda consumida ou não há transição possível para o próximo símboloA linguagem reconhecida por um AFD é
+o conjunto de todas as sequências de símbolos
+que levam do estado inicial a um dos 
+estados finais
+
+===== Página 9 =====
+9O analisador léxico como um AFD
+O analisador léxico pode ser visto como um grande AFD
+0" "
+1letterletter
+digit
+2digitdigit
+3(
+4>5=
+...Exemplo
+entrada: max  >=  30
+s0 s1m a x•sem transição " " em s1
+•ident é reconhecido
+> =s0 s5•pula brancos do início
+•não pára em s4
+•sem transição " " em s5
+•geq é reconhecido
+s0 s23 0•pula brancos do início
+•sem transição " " em s2
+•number é reconhecido
+Após reconhecer cada token o analisador inicia novamente no estado 0ident
+number
+lpar
+gtr geq
+
+===== Página 10 =====
+10Transformação: ER DFA
+Uma gramática regular pode ser transformada em um AFD de acordo com o esquema:
+A = b C.  A Cb
+A = d.  Adstop
+Exemplo
+gramática
+A = a B | b C | c.
+B = b B | c.
+C = a C | c.autômato
+A Ba
+Cb
+stopca
+cb
+c
+
+===== Página 11 =====
+11Autômato Finito Não -determinístico (AFND)
+Exemplo
+0 1digit
+2digitdigit
+hexH3intNum
+hexNumintNum = digit { digit }.
+hexNum = digit { hex } "H".
+digit = "0" | "1" | ... | "9".
+hex = digit | "A" | ... | "F".não-determinístico porque
+há 2 transições possíveis
+com digit em s0
+Todo AFND pode ser transformado em um AFD equivalente
+(algoritmo em livros de Linguagens formais ou no Aho, Sethi, Ullman: Compilers )
+0 1digit2A,B,C,D,E,F
+digit hexH3intNum
+hexNumH
+
+===== Página 12 =====
+12Implementação de AFD (Variação 1)
+Implementação de 
+ as uma matriz
+int[,] delta = new int[maxStates, maxSymbols];
+int lastState, state = 0;   // DFA starts in state 0
+do {
+int sym = next symbol ;
+lastState = state;
+state = delta[state, sym] ;
+} while (state != undefined );
+assert(lastState 
+ F);  // F is set of final states
+return recognizedToken[lastState];Este é um exemplo de um algoritmo 
+universal dirigido por tabela
+Exemplo de 
+0 2a1c
+bA = a { b } c.
+A
+abc
+0 1--
+1 -12
+2 ---F
+int[,] delta = { {1, -1, -1}, {-1, 1, 2}, { -1, -1, -1} };
+Esta implementação seria muito ineficiente para um analisador real.
+
+===== Página 13 =====
+130 2a1c
+bA
+Hard -code dos estados em código fonte
+int state = 0;
+loop:
+for (;;) {
+char ch = read();
+switch (state) {
+case 0: if (ch == 'a') { state = 1; break; } 
+else break loop;
+case 1: if (ch == 'b') { state = 1; break; }
+else if (ch == 'c') { state = 2; break; }
+else break loop;
+case 2: return A;
+}
+}
+return errorToken;Em java é ainda mas tedioso:
+char ch = read();
+s0: if (ch == 'a') { ch = read(); goto s1; } 
+else goto err;
+s1: if (ch == 'b') { ch = read(); goto s1; }
+else if (ch == 'c') { ch = read(); goto s2; }
+else goto err;
+s2: return A;
+err: return errorToken;Implementação de AFD (Variação 2)
+
+===== Página 14 =====
+14class Scanner {
+InputStream _in;
+char _la; // The lookahead character
+char[] _window; // lexeme window
+Token nextToken() {
+StartLexeme(); // reset window at start
+while(true) {
+switch(_state) {
+case 0: {
+_la = getChar();
+if (_la == ‘<’) _state = 1;
+else if (_la == ‘=’) _state = 5;
+else if (_la == ‘>’) _state = 6;
+else failure(state);
+} break;
+case 6: {
+_la = getChar();
+if (_la == ‘=’) _state = 7;
+else _state = 8;
+} break;
+}
+}  }  }case 7: {
+return new Token(GEQUAL);
+} break;
+case 8: {
+pushBack(_la);
+return new Token(GREATER);
+}Implementação de AFD (Variação 2)
+
+===== Página 15 =====
+152.Análise léxica
+2.1 Tarefas do analisador léxico
+2.2 Gramáticas regulares e autômatos finitos
+2.3 Implementação de um analisador léxico
+
+===== Página 16 =====
+16Interface do analisador léxico
+class Scanner {
+static void Init(TextReader r) {...}
+static Token Next () {...}
+}Por questões de eficiência os métodos são estáticos
+(há apenas um analisador léxico por compilador)
+Scanner.Init(new StreamReader("myProg.zs"));Inicialização do analisador
+Token t;
+for (;;) {
+t = Scanner.Next();
+...
+}Leitura da cadeia de caracteres
+
+===== Página 17 =====
+17Tokens
+class Token {
+int kind; // código do token
+int line; // linha do token (para mensagens de erro)
+int col; // coluna do token (para mensagens de erro)
+int val; // valor do token (para números e constantes literais)
+string str; // literal do token (para números e identificadores)
+}
+PLUS = 4, /* +*/
+MINUS = 5, /* -*/
+TIMES = 6, /* **/
+SLASH = 7, /* /*/
+REM = 8, /* %*/
+EQ = 9, /* ==*/
+GE = 10, /* >=*/
+GT = 11, /* >*/
+LE = 12, /* <=*/
+LT = 13, /* <*/
+NE = 14, /* !=*/
+AND = 15, /* &&*/
+OR = 16, /* ||*/Exemplo: códigos de tokens para um subconjunto de C#
+const int
+NONE = 0, IDENT = 1,
+NUMBER = 2,
+CHARCONST = 3,ASSIGN = 17, /* =*/
+PPLUS = 18, /* ++*/
+MMINUS = 19, /* --*/
+SEMICOLON = 20, /* ;*/
+COMMA = 21, /* ,*/
+PERIOD = 22, /* .*/
+LPAR = 23, /* (*/
+RPAR = 24, /* )*/
+LBRACK = 25, /* [*/
+RBRACK = 26, /* ]*/
+LBRACE = 27, /* {*/
+RBRACE = 28, /* }*/BREAK = 29,
+CLASS = 30,
+CONST = 31,
+ELSE = 32,
+IF = 33,
+NEW = 34,
+READ = 35,
+RETURN = 36,
+VOID = 37,
+WHILE = 38,
+WRITE = 39,EOF = 40;error token token classes operators and special characters keywords end of file
+
+===== Página 18 =====
+18Exemplo de implementação
+Variáveis estáticas no analisador
+static TextReader input ; // cadeia de entrada
+static char ch; // próximo caracter de entrada (não processado)
+static int line, col; // linha e coluna do caracter ch
+const int EOF = '\u0080'; // caracter que é retornado ao final do arquivo
+Init()
+public static void Init(TextReader r) {
+input = r;
+line = 1; col = 0;
+NextCh();  // lê o primeiro caracter para ch e incrementa cols
+}
+NextCh()
+static void NextCh () {
+try {
+ch = (char) input.Read(); col++;
+if (ch == ' \n') { line++; col = 0; }
+else if (ch == ' \uffff') ch = EOF;
+} catch (IOException e) { ch = EOF; }
+}•ch= próximo caractere da entrada
+•retorna EOF ao final do arquivo
+•incrementa linee col
+
+===== Página 19 =====
+19Método Next()
+public static Token Next () {
+while (ch <= ' ') NextCh();  // skip blanks, tabs, eols
+Token t = new Token(); t.line = line, t.col = col;
+switch (ch) {
+case 'a': ... case 'z': case 'A': ... case 'Z': ReadName(t); break;
+case '0': case '1': ... case '9': ReadNumber(t); break;
+case ';': NextCh(); t.kind = Token.SEMICOLON; break;
+case '.': NextCh(); t.kind = Token.PERIOD; break;
+case EOF: t.kind = Token.EOF; break;  // no NextCh() any more
+...
+case '=': NextCh();
+if (ch == '=') { NextCh(); t.kind = Token.EQ; } 
+else t.kind = Token.ASSIGN;
+break;
+case '&': NextCh();
+if (ch == '&') { NextCh(); t.kind = Token.AND; } 
+else t.kind = NONE;
+break;
+...
+case '/': NextCh();
+if (ch == '/') {
+do NextCh(); while (ch != ' \n' && ch != EOF);
+t = Next();  // call scanner recursively
+} else t.kind = Token.SLASH;
+break;
+default: NextCh(); t.kind = Token.NONE; break;
+}
+return t;
+} // ch contém o próximo caracter ainda não processadonomes, pal. reservadas
+números
+tokens simples
+tokens compostos
+comentários
+character inválido
+
+===== Página 20 =====
+20Outros métodos
+static void ReadName (Token t)
+•No início chcontém a primeira letra do nome
+•Lê caracteres seguintes, dígitos e '_' e armazena -os em t.str
+•Pesquisa o nome em uma tabela de palavras reservadas  (usando hash ou pesquisa binária)
+se encontra: t.kind = número do token da palavra chave ;
+caso contrário: t.kind = Token.IDENT;
+•No final ch contém o caractere seguinte ao nome
+static void ReadNumber (Token t)
+•No início chcontém o primeiro dígito do número
+•Lê os dígitos seguintes, armazenando -os em t.str; então converte a string para um número e
+armazena o valor em t.val.
+se overflow: emite mensagem de erro
+•caso contrário: t.kind = Token.NUMBER;
+•No final ch contém o primeiro caractere após o número
+
+===== Página 21 =====
+21Considerações de eficiência
+Tamanho típico de um programa
+cerca de 1000 comandos
+cerca de 6000 tokens
+cerca de 60000 caracteres
+Scanning é uma das tarefas que mais consomem tempo das fases de um compilador
+(cerca de 20 -30% do tempo total de compilação)
+Manipular cada caractere tão pouco quanto possível
+por isto ché global e não parâmetro de N extCh()
+Para arquivos de entrada grandes é uma boa idéia utilizar leitura com buffer
+Stream file = new FileStream("MyProg.zs");
+Stream buf = new BufferedStream(file);
+TextReader r = new StreamReader(buf);
+Scanner.Init(r);
+Não compensa para arquivos pequenos
+
