@@ -40,7 +40,7 @@ java -cp ..\..\analisadores\EvalLexer EvalLexer ..\..\dados_teste\eval\teste_ava
 echo.
 echo Teste 2: Expressoes aritmeticas
 echo ----------------------------------------
-java EvalLexer eval_test.txt
+java -cp ..\..\analisadores\EvalLexer EvalLexer ..\..\dados_teste\eval\eval_test.txt
 
 echo.
 echo ========================================
@@ -50,7 +50,7 @@ echo ========================================
 echo.
 echo Teste 3: Caracteres invalidos
 echo ----------------------------------------
-java EvalLexer teste_erro.txt
+java -cp ..\..\analisadores\EvalLexer EvalLexer ..\..\dados_teste\erro\teste_erro.txt
 
 echo.
 echo ========================================

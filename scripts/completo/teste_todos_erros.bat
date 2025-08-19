@@ -13,19 +13,19 @@ echo e provam que os analisadores estao funcionando!
 echo.
 echo Verificando arquivos necessarios...
 
-if exist JsonLexer.java (
+if exist ..\..\analisadores\JsonLexer\JsonLexer.java (
     echo ✓ JsonLexer.java encontrado
 ) else (
     echo ✗ JsonLexer.java nao encontrado
-    echo Execute: java -jar jflex.jar JsonLexer.flex
+    echo Execute: java -jar jflex.jar ..\..\analisadores\JsonLexer\JsonLexer.flex
     goto :end
 )
 
-if exist EvalLexer.java (
+if exist ..\..\analisadores\EvalLexer\EvalLexer.java (
     echo ✓ EvalLexer.java encontrado
 ) else (
     echo ✗ EvalLexer.java nao encontrado
-    echo Execute: java -jar jflex.jar EvalLexer.flex
+    echo Execute: java -jar jflex.jar ..\..\analisadores\EvalLexer\EvalLexer.flex
     goto :end
 )
 
@@ -35,14 +35,14 @@ echo Compilando analisadores...
 echo ========================================
 
 echo Compilando JsonLexer...
-javac JsonLexer.java
+javac ..\..\analisadores\JsonLexer\JsonLexer.java
 if %errorlevel% neq 0 (
     echo ✗ Erro na compilacao do JsonLexer
     goto :end
 )
 
 echo Compilando EvalLexer...
-javac EvalLexer.java
+javac ..\..\analisadores\EvalLexer\EvalLexer.java
 if %errorlevel% neq 0 (
     echo ✗ Erro na compilacao do EvalLexer
     goto :end
@@ -58,13 +58,13 @@ echo ========================================
 echo.
 echo Teste 1.1: JSON com caracteres especiais
 echo ----------------------------------------
-java JsonLexer teste_erro.txt
+java -cp ..\..\analisadores\JsonLexer JsonLexer ..\..\dados_teste\erro\teste_erro.txt
 
 echo.
 echo Teste 1.2: JSON com erros basicos
 echo ----------------------------------------
-if exist json_erro.txt (
-    java JsonLexer json_erro.txt
+if exist ..\..\dados_teste\json\json_erro.txt (
+    java -cp ..\..\analisadores\JsonLexer JsonLexer ..\..\dados_teste\json\json_erro.txt
 ) else (
     echo Arquivo json_erro.txt nao encontrado
 )
@@ -72,8 +72,8 @@ if exist json_erro.txt (
 echo.
 echo Teste 1.3: JSON com erros completos
 echo ----------------------------------------
-if exist json_erro_completo.txt (
-    java JsonLexer json_erro_completo.txt
+if exist ..\..\dados_teste\json\json_erro_completo.txt (
+    java -cp ..\..\analisadores\JsonLexer JsonLexer ..\..\dados_teste\json\json_erro_completo.txt
 ) else (
     echo Arquivo json_erro_completo.txt nao encontrado
 )
@@ -86,13 +86,13 @@ echo ========================================
 echo.
 echo Teste 2.1: Entrada com caracteres especiais
 echo ----------------------------------------
-java EvalLexer teste_erro.txt
+java -cp ..\..\analisadores\EvalLexer EvalLexer ..\..\dados_teste\erro\teste_erro.txt
 
 echo.
 echo Teste 2.2: Entrada com erros basicos
 echo ----------------------------------------
-if exist eval_erro.txt (
-    java EvalLexer eval_erro.txt
+if exist ..\..\dados_teste\eval\eval_erro.txt (
+    java -cp ..\..\analisadores\EvalLexer EvalLexer ..\..\dados_teste\eval\eval_erro.txt
 ) else (
     echo Arquivo eval_erro.txt nao encontrado
 )
@@ -100,8 +100,8 @@ if exist eval_erro.txt (
 echo.
 echo Teste 2.3: Entrada com erros completos
 echo ----------------------------------------
-if exist eval_erro_completo.txt (
-    java EvalLexer eval_erro_completo.txt
+if exist ..\..\dados_teste\eval\eval_erro_completo.txt (
+    java -cp ..\..\analisadores\EvalLexer EvalLexer ..\..\dados_teste\eval\eval_erro_completo.txt
 ) else (
     echo Arquivo eval_erro_completo.txt nao encontrado
 )

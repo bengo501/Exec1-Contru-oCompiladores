@@ -6,14 +6,14 @@ echo ========================================
 echo.
 echo Verificando se os arquivos Java foram gerados...
 
-if exist JsonLexer.java (
+if exist ..\..\analisadores\JsonLexer\JsonLexer.java (
     echo ✓ JsonLexer.java encontrado
 ) else (
     echo ✗ JsonLexer.java nao encontrado
     goto :end
 )
 
-if exist EvalLexer.java (
+if exist ..\..\analisadores\EvalLexer\EvalLexer.java (
     echo ✓ EvalLexer.java encontrado
 ) else (
     echo ✗ EvalLexer.java nao encontrado
@@ -23,14 +23,14 @@ if exist EvalLexer.java (
 echo.
 echo Verificando arquivos de teste...
 
-if exist teste_json.txt (
+if exist ..\..\dados_teste\json\teste_json.txt (
     echo ✓ teste_json.txt encontrado
 ) else (
     echo ✗ teste_json.txt nao encontrado
     goto :end
 )
 
-if exist teste_avaliacao.txt (
+if exist ..\..\dados_teste\eval\teste_avaliacao.txt (
     echo ✓ teste_avaliacao.txt encontrado
 ) else (
     echo ✗ teste_avaliacao.txt nao encontrado
@@ -44,25 +44,25 @@ echo ========================================
 
 echo.
 echo Compilando JsonLexer...
-javac JsonLexer.java
+javac ..\..\analisadores\JsonLexer\JsonLexer.java
 if %errorlevel% equ 0 (
     echo ✓ JsonLexer compilado com sucesso
 ) else (
     echo ✗ Erro na compilacao do JsonLexer
     echo Tente usar o caminho completo do Java:
-    echo "C:\Program Files\Java\jdk-version\bin\javac" JsonLexer.java
+    echo "C:\Program Files\Java\jdk-version\bin\javac" ..\..\analisadores\JsonLexer\JsonLexer.java
     goto :end
 )
 
 echo.
 echo Compilando EvalLexer...
-javac EvalLexer.java
+javac ..\..\analisadores\EvalLexer\EvalLexer.java
 if %errorlevel% equ 0 (
     echo ✓ EvalLexer compilado com sucesso
 ) else (
     echo ✗ Erro na compilacao do EvalLexer
     echo Tente usar o caminho completo do Java:
-    echo "C:\Program Files\Java\jdk-version\bin\javac" EvalLexer.java
+    echo "C:\Program Files\Java\jdk-version\bin\javac" ..\..\analisadores\EvalLexer\EvalLexer.java
     goto :end
 )
 
@@ -74,7 +74,7 @@ echo ========================================
 echo.
 echo Testando JsonLexer com teste_json.txt:
 echo ----------------------------------------
-java JsonLexer teste_json.txt
+java -cp ..\..\analisadores\JsonLexer JsonLexer ..\..\dados_teste\json\teste_json.txt
 if %errorlevel% equ 0 (
     echo ✓ Teste do JsonLexer concluido
 ) else (
@@ -84,7 +84,7 @@ if %errorlevel% equ 0 (
 echo.
 echo Testando EvalLexer com teste_avaliacao.txt:
 echo ----------------------------------------
-java EvalLexer teste_avaliacao.txt
+java -cp ..\..\analisadores\EvalLexer EvalLexer ..\..\dados_teste\eval\teste_avaliacao.txt
 if %errorlevel% equ 0 (
     echo ✓ Teste do EvalLexer concluido
 ) else (

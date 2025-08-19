@@ -1,61 +1,146 @@
-# Exercícios de Análise Léxica - JFlex
-## Exercício 1: Analisador Léxico para JSON
-### Arquivos:
-- `JsonLexer.flex` - Especificação JFlex para JSON
-- `teste_json.txt` - Arquivo de teste JSON
+# Analisadores Léxicos - Exercícios de Compiladores
 
-### Tokens reconhecidos:
-- `LBRACE` (1) - Chave de abertura `{`
-- `RBRACE` (2) - Chave de fechamento `}`
-- `LBRACKET` (3) - Colchete de abertura `[`
-- `RBRACKET` (4) - Colchete de fechamento `]`
-- `COLON` (5) - Dois pontos `:`
-- `COMMA` (6) - Vírgula `,`
-- `STRING` (7) - Strings entre aspas duplas
-- `NUMBER` (8) - Números (inteiros e decimais)
-- `TRUE` (9) - Literal `true`
-- `FALSE` (10) - Literal `false`
-- `NULL` (11) - Literal `null`
-- `EOF` (12) - Fim do arquivo
+Este projeto contém implementações de analisadores léxicos usando JFlex para dois exercícios específicos, organizados em uma estrutura clara e bem documentada.
 
-### Como usar:
+## 📁 Estrutura do Projeto
+
+```
+Exec1-Contru-oCompiladores/
+├── 📁 analisadores/
+│   ├── 📁 JsonLexer/
+│   │   ├── JsonLexer.flex
+│   │   ├── JsonLexer.java
+│   │   └── JsonLexer.class
+│   └── 📁 EvalLexer/
+│       ├── EvalLexer.flex
+│       ├── EvalLexer.java
+│       └── EvalLexer.class
+├── 📁 scripts/
+│   ├── 📁 teste/
+│   │   ├── teste_json.bat
+│   │   └── teste_eval.bat
+│   ├── 📁 erro/
+│   │   ├── teste_json_erros.bat
+│   │   └── teste_eval_erros.bat
+│   └── 📁 completo/
+│       ├── teste_completo.bat
+│       ├── teste_todos_erros.bat
+│       └── testar_analisadores.bat
+├── 📁 dados_teste/
+│   ├── 📁 json/
+│   │   ├── teste_json.txt
+│   │   ├── json_test.txt
+│   │   ├── json_erro.txt
+│   │   ├── json_erro_completo.txt
+│   │   ├── json_unicode_erro.txt
+│   │   └── test.json
+│   ├── 📁 eval/
+│   │   ├── teste_avaliacao.txt
+│   │   ├── eval_test.txt
+│   │   ├── eval_erro.txt
+│   │   ├── eval_erro_completo.txt
+│   │   └── eval_numeros_erro.txt
+│   └── 📁 erro/
+│       └── teste_erro.txt
+├── 📁 documentacao/
+│   ├── GUIA_TESTES.md
+│   ├── RESUMO_TESTES.md
+│   ├── RESUMO_TESTES_ERRO.md
+│   └── GUIA_TESTE_ANALISADORES.md
+├── executar_testes.bat
+└── README.md
+```
+
+## 🚀 Como Usar
+
+### Opção 1: Script Principal (Recomendado)
 ```bash
-jflex JsonLexer.flex
-javac JsonLexer.java
-java JsonLexer teste_json.txt
+executar_testes.bat
 ```
+Este script oferece um menu interativo com todas as opções de teste.
 
-## Exercício 2: Analisador Léxico para Sistema de Avaliação
-### Arquivos:
-- `EvalLexer.flex` - Especificação JFlex para sistema de avaliação
-- `teste_avaliacao.txt` - Arquivo de teste do sistema de avaliação
-### Tokens reconhecidos:
-- `COMMA` (1) - Vírgula `,`
-- `LPAREN` (2) - Parêntese de abertura `(`
-- `RPAREN` (3) - Parêntese de fechamento `)`
-- `PLUS` (4) - Soma `+`
-- `MINUS` (5) - Subtração `-`
-- `TIMES` (6) - Multiplicação `*`
-- `DIVIDE` (7) - Divisão `/`
-- `INTEGER` (8) - Números inteiros
-- `FLOAT` (9) - Números em ponto flutuante
-- `NAME` (10) - Nomes de avaliação (P1, PS, ME, TF, etc.)
-- `SUBST_TYPE` (11) - Tipo de substituição (0, 1, 2)
-- `NEWLINE` (12) - Quebra de linha
-- `EOF` (13) - Fim do arquivo
+### Opção 2: Comandos Manuais
 
-### Como usar:
+#### 1. Gerar os arquivos Java
 ```bash
-jflex EvalLexer.flex
-javac EvalLexer.java
-java EvalLexer teste_avaliacao.txt
+java -jar jflex.jar analisadores\JsonLexer\JsonLexer.flex
+java -jar jflex.jar analisadores\EvalLexer\EvalLexer.flex
 ```
 
-## Compilação e Teste Automático
-Execute o script `compilar_e_testar.bat` para compilar e testar ambos os analisadores automaticamente.
+#### 2. Compilar
+```bash
+javac analisadores\JsonLexer\JsonLexer.java
+javac analisadores\EvalLexer\EvalLexer.java
+```
 
-## Formato de Saída
-Cada analisador léxico mostra a saída no formato:
+#### 3. Executar Testes
+```bash
+# Teste individual JsonLexer
+scripts\teste\teste_json.bat
+
+# Teste individual EvalLexer
+scripts\teste\teste_eval.bat
+
+# Teste completo (ambos analisadores)
+scripts\completo\teste_completo.bat
+
+# Teste apenas erros
+scripts\completo\teste_todos_erros.bat
 ```
-CÓDIGO LEXEME          LINHA
+
+## 📋 Tipos de Teste Disponíveis
+
+### Testes Individuais
+- **JsonLexer**: `scripts\teste\teste_json.bat`
+- **EvalLexer**: `scripts\teste\teste_eval.bat`
+
+### Testes de Erro
+- **JsonLexer Erros**: `scripts\erro\teste_json_erros.bat`
+- **EvalLexer Erros**: `scripts\erro\teste_eval_erros.bat`
+
+### Testes Completos
+- **Todos os Testes**: `scripts\completo\teste_completo.bat`
+- **Todos os Erros**: `scripts\completo\teste_todos_erros.bat`
+
+## 📊 Formato de Saída
+
+Cada analisador produz saída no formato:
 ```
+CÓDIGO LEXEME LINHA
+```
+
+Onde:
+- **CÓDIGO**: Número identificador do token
+- **LEXEME**: Texto reconhecido
+- **LINHA**: Número da linha onde o token foi encontrado
+
+## 📚 Documentação
+
+- **`documentacao\GUIA_TESTES.md`** - Guia completo de testes
+- **`documentacao\RESUMO_TESTES.md`** - Resumo dos arquivos de teste
+- **`documentacao\RESUMO_TESTES_ERRO.md`** - Resumo dos testes de erro
+- **`documentacao\GUIA_TESTE_ANALISADORES.md`** - Guia para provar a correção
+
+## 🎯 Características dos Analisadores
+
+### JsonLexer
+- Reconhece tokens JSON: `{`, `}`, `[`, `]`, `:`, `,`, strings, números, booleanos, null
+- Tratamento de erros para caracteres inválidos
+- Contagem de linhas
+- Códigos de token: 1-11
+
+### EvalLexer
+- Reconhece tokens do sistema de avaliação: nomes, operadores, números, parênteses
+- Tratamento de erros para caracteres inválidos
+- Contagem de linhas
+- Códigos de token: 1-12
+
+## ✅ Critérios de Sucesso
+
+Os testes passam quando:
+- ✅ Todos os tokens válidos são reconhecidos
+- ✅ Códigos dos tokens estão corretos
+- ✅ Linhas são contadas corretamente
+- ✅ Caracteres inválidos geram mensagens de erro
+- ✅ Formato de saída está correto
+- ✅ EOF é impresso ao final

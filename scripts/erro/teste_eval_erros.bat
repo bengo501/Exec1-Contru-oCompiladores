@@ -6,11 +6,11 @@ echo ========================================
 echo.
 echo Verificando se o EvalLexer.java existe...
 
-if exist EvalLexer.java (
+if exist ..\..\analisadores\EvalLexer\EvalLexer.java (
     echo ✓ EvalLexer.java encontrado
 ) else (
     echo ✗ EvalLexer.java nao encontrado
-    echo Execute primeiro: java -jar jflex.jar EvalLexer.flex
+    echo Execute primeiro: java -jar jflex.jar ..\..\analisadores\EvalLexer\EvalLexer.flex
     goto :end
 )
 
@@ -19,7 +19,7 @@ echo ========================================
 echo Compilando EvalLexer...
 echo ========================================
 
-javac EvalLexer.java
+javac ..\..\analisadores\EvalLexer\EvalLexer.java
 if %errorlevel% equ 0 (
     echo ✓ EvalLexer compilado com sucesso
 ) else (
@@ -41,7 +41,7 @@ echo.
 echo Teste 1: Entrada com caracteres especiais invalidos
 echo ----------------------------------------
 echo Arquivo: teste_erro.txt
-java EvalLexer teste_erro.txt
+java -cp ..\..\analisadores\EvalLexer EvalLexer ..\..\dados_teste\erro\teste_erro.txt
 
 echo.
 echo ========================================
@@ -50,8 +50,8 @@ echo.
 echo Teste 2: Entrada com erros basicos
 echo ----------------------------------------
 echo Arquivo: eval_erro.txt
-if exist eval_erro.txt (
-    java EvalLexer eval_erro.txt
+if exist ..\..\dados_teste\eval\eval_erro.txt (
+    java -cp ..\..\analisadores\EvalLexer EvalLexer ..\..\dados_teste\eval\eval_erro.txt
 ) else (
     echo Arquivo eval_erro.txt nao encontrado
 )
@@ -63,8 +63,8 @@ echo.
 echo Teste 3: Entrada com erros completos
 echo ----------------------------------------
 echo Arquivo: eval_erro_completo.txt
-if exist eval_erro_completo.txt (
-    java EvalLexer eval_erro_completo.txt
+if exist ..\..\dados_teste\eval\eval_erro_completo.txt (
+    java -cp ..\..\analisadores\EvalLexer EvalLexer ..\..\dados_teste\eval\eval_erro_completo.txt
 ) else (
     echo Arquivo eval_erro_completo.txt nao encontrado
 )

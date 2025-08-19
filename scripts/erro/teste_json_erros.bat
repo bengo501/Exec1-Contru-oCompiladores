@@ -6,11 +6,11 @@ echo ========================================
 echo.
 echo Verificando se o JsonLexer.java existe...
 
-if exist JsonLexer.java (
+if exist ..\..\analisadores\JsonLexer\JsonLexer.java (
     echo ✓ JsonLexer.java encontrado
 ) else (
     echo ✗ JsonLexer.java nao encontrado
-    echo Execute primeiro: java -jar jflex.jar JsonLexer.flex
+    echo Execute primeiro: java -jar jflex.jar ..\..\analisadores\JsonLexer\JsonLexer.flex
     goto :end
 )
 
@@ -19,7 +19,7 @@ echo ========================================
 echo Compilando JsonLexer...
 echo ========================================
 
-javac JsonLexer.java
+javac ..\..\analisadores\JsonLexer\JsonLexer.java
 if %errorlevel% equ 0 (
     echo ✓ JsonLexer compilado com sucesso
 ) else (
@@ -41,7 +41,7 @@ echo.
 echo Teste 1: JSON com caracteres especiais invalidos
 echo ----------------------------------------
 echo Arquivo: teste_erro.txt
-java JsonLexer teste_erro.txt
+java -cp ..\..\analisadores\JsonLexer JsonLexer ..\..\dados_teste\erro\teste_erro.txt
 
 echo.
 echo ========================================
@@ -50,8 +50,8 @@ echo.
 echo Teste 2: JSON com erros basicos
 echo ----------------------------------------
 echo Arquivo: json_erro.txt
-if exist json_erro.txt (
-    java JsonLexer json_erro.txt
+if exist ..\..\dados_teste\json\json_erro.txt (
+    java -cp ..\..\analisadores\JsonLexer JsonLexer ..\..\dados_teste\json\json_erro.txt
 ) else (
     echo Arquivo json_erro.txt nao encontrado
 )
@@ -63,8 +63,8 @@ echo.
 echo Teste 3: JSON com erros completos
 echo ----------------------------------------
 echo Arquivo: json_erro_completo.txt
-if exist json_erro_completo.txt (
-    java JsonLexer json_erro_completo.txt
+if exist ..\..\dados_teste\json\json_erro_completo.txt (
+    java -cp ..\..\analisadores\JsonLexer JsonLexer ..\..\dados_teste\json\json_erro_completo.txt
 ) else (
     echo Arquivo json_erro_completo.txt nao encontrado
 )
