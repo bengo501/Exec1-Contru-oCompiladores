@@ -2,47 +2,47 @@
 
 Este projeto contém implementações de analisadores léxicos usando JFlex para dois exercícios específicos, organizados em uma estrutura clara e bem documentada.
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 Exec1-Contru-oCompiladores/
-├── 📁 analisadores/
-│   ├── 📁 JsonLexer/
+├──  analisadores/
+│   ├──  JsonLexer/
 │   │   ├── JsonLexer.flex
 │   │   ├── JsonLexer.java
 │   │   └── JsonLexer.class
-│   └── 📁 EvalLexer/
+│   └──  EvalLexer/
 │       ├── EvalLexer.flex
 │       ├── EvalLexer.java
 │       └── EvalLexer.class
-├── 📁 scripts/
-│   ├── 📁 teste/
+├──  scripts/
+│   ├──  teste/
 │   │   ├── teste_json.bat
 │   │   └── teste_eval.bat
-│   ├── 📁 erro/
+│   ├──  erro/
 │   │   ├── teste_json_erros.bat
 │   │   └── teste_eval_erros.bat
-│   └── 📁 completo/
+│   └──  completo/
 │       ├── teste_completo.bat
 │       ├── teste_todos_erros.bat
 │       └── testar_analisadores.bat
-├── 📁 dados_teste/
-│   ├── 📁 json/
+├──  dados_teste/
+│   ├──  json/
 │   │   ├── teste_json.txt
 │   │   ├── json_test.txt
 │   │   ├── json_erro.txt
 │   │   ├── json_erro_completo.txt
 │   │   ├── json_unicode_erro.txt
 │   │   └── test.json
-│   ├── 📁 eval/
+│   ├──  eval/
 │   │   ├── teste_avaliacao.txt
 │   │   ├── eval_test.txt
 │   │   ├── eval_erro.txt
 │   │   ├── eval_erro_completo.txt
 │   │   └── eval_numeros_erro.txt
-│   └── 📁 erro/
+│   └──  erro/
 │       └── teste_erro.txt
-├── 📁 documentacao/
+├──  documentacao/
 │   ├── GUIA_TESTES.md
 │   ├── RESUMO_TESTES.md
 │   ├── RESUMO_TESTES_ERRO.md
@@ -51,7 +51,7 @@ Exec1-Contru-oCompiladores/
 └── README.md
 ```
 
-## 🚀 Como Usar
+##  Como Usar
 
 ### Opção 1: Script Principal (Recomendado)
 ```bash
@@ -88,7 +88,7 @@ scripts\completo\teste_completo.bat
 scripts\completo\teste_todos_erros.bat
 ```
 
-## 📋 Tipos de Teste Disponíveis
+##  Tipos de Teste Disponíveis
 
 ### Testes Individuais
 - **JsonLexer**: `scripts\teste\teste_json.bat`
@@ -102,7 +102,7 @@ scripts\completo\teste_todos_erros.bat
 - **Todos os Testes**: `scripts\completo\teste_completo.bat`
 - **Todos os Erros**: `scripts\completo\teste_todos_erros.bat`
 
-## 📊 Formato de Saída
+##  Formato de Saída
 
 Cada analisador produz saída no formato:
 ```
@@ -114,14 +114,14 @@ Onde:
 - **LEXEME**: Texto reconhecido
 - **LINHA**: Número da linha onde o token foi encontrado
 
-## 📚 Documentação
+##  Documentação
 
 - **`documentacao\GUIA_TESTES.md`** - Guia completo de testes
 - **`documentacao\RESUMO_TESTES.md`** - Resumo dos arquivos de teste
 - **`documentacao\RESUMO_TESTES_ERRO.md`** - Resumo dos testes de erro
 - **`documentacao\GUIA_TESTE_ANALISADORES.md`** - Guia para provar a correção
 
-## 🎯 Características dos Analisadores
+##  Características dos Analisadores
 
 ### JsonLexer
 - Reconhece tokens JSON: `{`, `}`, `[`, `]`, `:`, `,`, strings, números, booleanos, null
@@ -135,12 +135,12 @@ Onde:
 - Contagem de linhas
 - Códigos de token: 1-12
 
-## ✅ Critérios de Sucesso
+##  Critérios de Sucesso
 
 Os testes passam quando:
-- ✅ Todos os tokens válidos são reconhecidos
-- ✅ Códigos dos tokens estão corretos
-- ✅ Linhas são contadas corretamente
-- ✅ Caracteres inválidos geram mensagens de erro
-- ✅ Formato de saída está correto
-- ✅ EOF é impresso ao final
+-  Todos os tokens válidos são reconhecidos
+-  Códigos dos tokens estão corretos
+-  Linhas são contadas corretamente
+-  Caracteres inválidos geram mensagens de erro
+-  Formato de saída está correto
+-  EOF é impresso ao final
